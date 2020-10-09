@@ -1,0 +1,89 @@
+#Tags
+set tag FAH color color21
+set tag FAH comments "Folding At Home"
+set tag Workstations color color9
+set tag Servers color color26
+set tag Outbound color color17
+
+#My source addresses
+set address FAH_Server ip-netmask 10.1.1.10
+set address FAH_Server tag Servers
+set address FAH_Workstation ip-netmask 10.1.1.11
+set address FAH_Workstation tag Workstations
+
+#Destination addresses
+set address assign1.foldingathome.org fqdn assign1.foldingathome.org
+set address assign1.foldingathome.org tag FAH
+set address assign2.foldingathome.org fqdn assign2.foldingathome.org
+set address assign2.foldingathome.org tag FAH
+set address fah1.innovatr.ca fqdn fah1.innovatr.ca
+set address fah1.innovatr.ca tag FAH
+set address folding01.biophysics.kth.se fqdn folding01.biophysics.kth.se
+set address folding01.biophysics.kth.se tag FAH
+set address fah-ws1.bahnhof.net fqdn fah-ws1.bahnhof.net
+set address fah-ws1.bahnhof.net tag FAH
+set address avast2.foldingathome.org fqdn avast2.foldingathome.org
+set address avast2.foldingathome.org tag FAH
+set address oracle2.foldingathome.org fqdn oracle2.foldingathome.org
+set address oracle2.foldingathome.org tag FAH
+set address vav16.ocis.temple.edu fqdn vav16.ocis.temple.edu
+set address vav16.ocis.temple.edu tag FAH
+set address orkney.seas.wustl.edu fqdn orkney.seas.wustl.edu
+set address orkney.seas.wustl.edu tag FAH
+set address islay.seas.wustl.edu fqdn islay.seas.wustl.edu
+set address islay.seas.wustl.edu tag FAH
+set address fah-w1.vmware.com fqdn fah-w1.vmware.com
+set address fah-w1.vmware.com tag FAH
+set address vav4.ocis.temple.edu fqdn vav4.ocis.temple.edu
+set address vav4.ocis.temple.edu tag FAH
+set address plfah1-1.mskcc.org fqdn plfah1-1.mskcc.org
+set address plfah1-1.mskcc.org tag FAH
+set address pvs0156.ust.hk fqdn pvs0156.ust.hk
+set address pvs0156.ust.hk tag FAH
+set address pllwskifah1.mskcc.org fqdn pllwskifah1.mskcc.org
+set address pllwskifah1.mskcc.org tag FAH
+set address farclas.engr.wustl.edu fqdn farclas.engr.wustl.edu
+set address farclas.engr.wustl.edu tag FAH
+set address aws3.foldingathome.org fqdn aws3.foldingathome.org
+set address aws3.foldingathome.org tag FAH
+set address cores.foldingathome.org tag FAH
+set address cores.foldingathome.org fqdn cores.foldingathome.org
+
+#Dynamic address group
+set address-group FAH dynamic filter "'FAH'"
+set address-group FAH tag FAH
+
+#Security Rules
+set rulebase security rules Allow_FAH profile-setting group default
+set rulebase security rules Allow_FAH to Outside
+set rulebase security rules Allow_FAH from Inside
+set rulebase security rules Allow_FAH source [ FAH_Server FAH_Workstation ]
+set rulebase security rules Allow_FAH destination FAH
+set rulebase security rules Allow_FAH source-user any
+set rulebase security rules Allow_FAH category any
+set rulebase security rules Allow_FAH application [ folding-at-home http-proxy web-browsing ]
+set rulebase security rules Allow_FAH service application-default
+set rulebase security rules Allow_FAH source-hip any
+set rulebase security rules Allow_FAH destination-hip any
+set rulebase security rules Allow_FAH tag [ Outbound Servers Workstations ]
+set rulebase security rules Allow_FAH action allow
+set rulebase security rules Allow_FAH description "Allow traffic to Folding at Home"
+set rulebase security rules Allow_FAH group-tag Outbound
+set rulebase security rules Allow_FAH log-setting default
+
+set rulebase security rules Allow_FAH_2 profile-setting group default
+set rulebase security rules Allow_FAH_2 to Outside
+set rulebase security rules Allow_FAH_2 from Inside
+set rulebase security rules Allow_FAH_2 source [ FAH_Server FAH_Workstation ]
+set rulebase security rules Allow_FAH_2 destination FAH
+set rulebase security rules Allow_FAH_2 source-user any
+set rulebase security rules Allow_FAH_2 category any
+set rulebase security rules Allow_FAH_2 application [ folding-at-home web-browsing ]
+set rulebase security rules Allow_FAH_2 service service-https
+set rulebase security rules Allow_FAH_2 source-hip any
+set rulebase security rules Allow_FAH_2 destination-hip any
+set rulebase security rules Allow_FAH_2 tag [ Outbound Servers Workstations ]
+set rulebase security rules Allow_FAH_2 action allow
+set rulebase security rules Allow_FAH_2 description "Allow traffic to Folding at Home"
+set rulebase security rules Allow_FAH_2 group-tag Outbound
+set rulebase security rules Allow_FAH_2 log-setting default
