@@ -48,6 +48,8 @@ set address aws3.foldingathome.org fqdn aws3.foldingathome.org
 set address aws3.foldingathome.org tag FAH
 set address cores.foldingathome.org tag FAH
 set address cores.foldingathome.org fqdn cores.foldingathome.org
+set address vav18.fah.temple.edu tag FAH
+set address vav18.fah.temple.edu fqdn vav18.fah.temple.edu
 
 #Dynamic address group
 set address-group FAH dynamic filter "'FAH'"
